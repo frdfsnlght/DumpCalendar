@@ -3,6 +3,20 @@
 # see https://developers.google.com/identity/protocols/oauth2/limited-input-device
 # see https://google-auth-oauthlib.readthedocs.io/en/latest/reference/google_auth_oauthlib.html
 
+# Obtaining Google API credentials:
+#
+# 1. goto https://console.developers.google.com/apis/dashboard
+# 2. create a new project if necessary, or use an existing one
+# 3. click 'Credentials' on left menu
+# 4. click '+ CREATE CREDENTIALS', choose 'OAuth client ID'
+# 5. choose 'TVs and Limited Input devices' and enter a client name
+# 6. copy the resulting Client ID and Secret, you'll need them when this script runs for the first time
+
+# Preparing python:
+#
+# pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
+# pip install python-dateutil
+
 import os.path, pickle, argparse, dateutil.parser, time, datetime
 from google_auth_oauthlib import get_user_credentials
 from googleapiclient.discovery import build
