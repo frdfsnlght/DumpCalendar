@@ -120,7 +120,7 @@ def getEvents(args):
 
 if __name__ == '__main__':
 
-    parser = argparse.ArgumentParser(description = 'Extract Google Calendar entries')
+    parser = argparse.ArgumentParser(description = 'Dump Google calendar entries to TSV')
     parser.set_defaults(func = noCommand)
     
     subparsers = parser.add_subparsers()
