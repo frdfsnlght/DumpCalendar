@@ -17,7 +17,7 @@
 # pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
 # pip install python-dateutil
 
-import os.path, pickle, argparse, dateutil.parser, time, datetime
+import sys, os.path, pickle, argparse, dateutil.parser, time, datetime
 from google_auth_oauthlib import get_user_credentials
 from googleapiclient.discovery import build
 
@@ -77,7 +77,8 @@ def getCalendars(args):
     result = calendar.calendarList().list().execute()
     cals = result['items']
     for cal in cals:
-        print(cal['summary'])
+        #print(cal)
+        print('{} ({})'.format(cal['summaryOverride'] if 'summaryOverride' in cal else cal['summary'], cal['id']))
     
 def getEvents(args):
     calendar = gapiLogin()
@@ -89,7 +90,7 @@ def getEvents(args):
     cals = result['items']
     calId = None
     for cal in cals:
-        if args.calendarName == cal['summary']:
+        if args.calendarName == cal['summary'] or args.calendarName == cal['id'] or ('summaryOverride' in cal and args.calendarName == cal['summaryOverride']):
             calId = cal['id']
             break
     if not calId:
